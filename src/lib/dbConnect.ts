@@ -6,6 +6,7 @@ if (!uri) {
 const dbname = process.env.DBNAME;
 export const collections = {
   USERS: "users",
+  PRODUCTS: "products",
 
 };
 

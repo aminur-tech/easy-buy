@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const FinalCTA = () => {
   return (
-    <section className="relative py-32 px-6 overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+    <section className="relative px-6 overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 py-10">
       {/* Abstract Glass Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-[100px]" />
@@ -13,7 +13,7 @@ const FinalCTA = () => {
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-black/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto ">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
