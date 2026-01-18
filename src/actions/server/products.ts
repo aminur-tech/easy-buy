@@ -25,7 +25,7 @@ type ProductDocument = {
   creator_name?: string;
   creator_email?: string;
   creator_image?: string;
-  createdAt?: Date;
+  createdAt?: Date | string;
 };
 
 // Fetch all products
@@ -39,7 +39,7 @@ export const getProducts = async (): Promise<Product[]> => {
   return (products as unknown as ProductDocument[]).map((p) => ({
     ...p,
     _id: p._id.toString(),
-    createdAt: p.createdAt ? p.createdAt.toISOString() : new Date().toISOString(),
+    createdAt: p.createdAt ? new Date(p.createdAt).toISOString() : new Date().toISOString(),
   }));
 };
 
@@ -57,6 +57,21 @@ export const getProductById = async (id: string): Promise<Product | null> => {
   return {
     ...productDoc,
     _id: productDoc._id.toString(),
-    createdAt: productDoc.createdAt ? productDoc.createdAt.toISOString() : new Date().toISOString(),
+    createdAt: productDoc.createdAt ? new Date(productDoc.createdAt).toISOString() : new Date().toISOString(),
   };
 };
+
+
+// Create a new product
+export const createProduct = async (product: Omit<Product, "_id" | "createdAt">) => {
+  try {
+    const newProduct = {
+      ...product,
+      createdAt: new Date().toISOString(),
+    };
+    const result = await dbConnect(collections.PRODUCTS).insertOne(newProduct);
+    return { success: true, message: "Product created successfully" };
+  } catch (error) {
+    return { success: false, message: "Failed to create product" };
+  }
+}

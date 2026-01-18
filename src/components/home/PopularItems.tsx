@@ -1,47 +1,25 @@
-"use client";
 
 import React from "react";
+import ProductCard from "../products/ProductCard";
+import { getProducts } from "@/actions/server/products";
 
-const popularItems = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: "$59.99",
-    image: "https://cdn-icons-png.flaticon.com/512/727/727399.png",
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: "$89.99",
-    image: "https://cdn-icons-png.flaticon.com/512/2920/2920346.png",
-  },
-  {
-    id: 3,
-    name: "Portable Speaker",
-    price: "$39.99",
-    image: "https://cdn-icons-png.flaticon.com/512/744/744922.png",
-  },
-  {
-    id: 4,
-    name: "Gaming Mouse",
-    price: "$29.99",
-    image: "https://cdn-icons-png.flaticon.com/512/2910/2910762.png",
-  },
-  {
-    id: 5,
-    name: "Laptop Stand",
-    price: "$24.99",
-    image: "https://cdn-icons-png.flaticon.com/512/3039/3039364.png",
-  },
-  {
-    id: 6,
-    name: "LED Desk Lamp",
-    price: "$19.99",
-    image: "https://cdn-icons-png.flaticon.com/512/2910/2910767.png",
-  },
-];
 
-const PopularItems = () => {
+const PopularItems = async() => {
+   const products = await getProducts();
+  
+    // Convert products to plain JSON-serializable objects
+    const serializedProducts = products.map((product) => ({
+      _id: product._id.toString(), // convert ObjectId to string
+      name: product.name,
+      price: product.price,
+      category: product.category,
+      image: product.image,
+      description: product.description,
+      creator_name: product.creator_name,
+      creator_email: product.creator_email,
+      creator_image: product.creator_image,
+    }));
+
   return (
     <section className="py-20 bg-base-100">
       <div className="w-full text-center">
@@ -53,33 +31,12 @@ const PopularItems = () => {
           Check out our top-selling products loved by customers.
         </p>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {popularItems.slice(0, 6).map((item) => (
-            <div
-              key={item.id}
-              className="card bg-base-200 border border-base-300 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center"
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-32 h-32 object-contain mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-              <p className="text-lg font-bold text-primary mb-4">{item.price}</p>
-              <button className="btn btn-outline btn-primary w-full">
-                View Details
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="mt-12">
-          <button className="btn btn-primary btn-lg rounded-xl shadow-lg hover:shadow-primary/30 transition-all">
-            View All Items
-          </button>
-        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 w-11/12 mx-auto mt-10 mb-10">
+      {serializedProducts.map((product) => (
+        <ProductCard key={product._id} product={product} />
+      ))}
+    </div>
+      
       </div>
     </section>
   );

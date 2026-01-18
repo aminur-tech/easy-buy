@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
 import { Providers } from "@/components/Providers/Providers";
+import { ThemeProvider } from "@/components/theme-provider/theme-provider";
 
 
 const geistSans = Geist({
@@ -29,17 +30,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <header>
-            <Navbar />
-          </header>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
 
-          <main className="min-h-screen">{children}</main>
+          <Providers>
+            <header>
+              <Navbar />
+            </header>
 
-          <footer>
-            <Footer />
-          </footer>
-        </Providers>
+            <main className="min-h-screen">{children}</main>
+
+            <footer>
+              <Footer />
+            </footer>
+          </Providers>
+        </ThemeProvider>
+
       </body>
     </html>
   );
