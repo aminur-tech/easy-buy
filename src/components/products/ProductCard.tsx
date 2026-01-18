@@ -1,11 +1,16 @@
+import Link from "next/link";
 import React from "react";
 
 type Product = {
+  _id: string;         // Added ID
   name: string;
   price: number;
   category: string;
   image: string;
   description?: string;
+  creator_name?: string;
+  creator_email?: string;
+  creator_image?: string;
 };
 
 type ProductCardProps = {
@@ -13,7 +18,7 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { name, price, category, image } = product;
+  const { _id, name, price, category, image } = product;
 
   return (
     <div className="
@@ -59,10 +64,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Buttons */}
         <div className="flex gap-2 pt-2">
-          <button className="btn btn-sm btn-ghost border border-base-300 flex-1">
+          <Link
+            href={`/products/${_id}`}
+            className="btn btn-outline hover:bg-gradient-to-r from-blue-500 to-violet-600 text-base-content border border-base-300 flex-1 text-center"
+          >
             View
-          </button>
-          <button className="btn btn-sm btn-primary flex-1">
+          </Link>
+          <button className="btn bg-gradient-to-r from-blue-500 to-violet-600 text-white border-none hover:from-blue-600 hover:to-violet-700 flex-1">
             Add
           </button>
         </div>

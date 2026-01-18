@@ -1,4 +1,5 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { AuthOptions, Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { loginUser } from "@/actions/server/auth";
@@ -36,18 +37,19 @@ export const authOptions: AuthOptions = {
 
   
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.id = user.id;
-        token.role = user.role;
+        token.role = (user as User & { role: string }).role;
       }
       return token;
     },
 
-    async session({ session, token }: { session: any; token: any }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
-        session.user.id = token.id;
-        session.user.role = token.role;
+        const extendedUser = session.user as Session["user"] & { id: string; role: string };
+        extendedUser.id = token.id as string;
+        extendedUser.role = token.role as string;
       }
       return session;
     },

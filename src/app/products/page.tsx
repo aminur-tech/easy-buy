@@ -1,8 +1,9 @@
-import { GetProducts } from "@/actions/server/products";
+
+import { getProducts } from "@/actions/server/products";
 import ProductCard from "@/components/products/ProductCard";
 
 const ProductsPage = async () => {
-  const products = await GetProducts();
+  const products = await getProducts();
 
   // Convert products to plain JSON-serializable objects
   const serializedProducts = products.map((product) => ({
@@ -18,7 +19,7 @@ const ProductsPage = async () => {
   }));
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 w-11/12 mx-auto mt-10 mb-10">
       {serializedProducts.map((product) => (
         <ProductCard key={product._id} product={product} />
       ))}
