@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
     );
 
     return (
-        <div className="sticky top-0 z-50 bg-base-100/90 backdrop-blur-md shadow-md">
+        <header className="sticky top-0 z-50 bg-base-100/90 backdrop-blur-md shadow-md">
             <div className="navbar md:w-11/12 mx-auto px-4 lg:px-0">
                 {/* Navbar Start */}
                 <div className="navbar-start">
@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
                     )}
                 </div>
             </div>
-        </div>
+        </header>
     );
 };
 

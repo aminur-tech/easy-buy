@@ -2,6 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
+const MotionLink = motion(Link);
 
 const FinalCTA = () => {
   return (
@@ -48,12 +51,13 @@ const FinalCTA = () => {
               </svg>
             </motion.button>
 
-            <motion.button
+            <MotionLink
+              href="/products"
               whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
               className="px-10 py-5 border-2 border-white/40 text-white font-bold rounded-2xl backdrop-blur-sm transition-colors"
             >
               Explore Products
-            </motion.button>
+            </MotionLink>
           </div>
 
           {/* Achievement Row */}

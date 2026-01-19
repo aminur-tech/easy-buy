@@ -1,142 +1,139 @@
 import React from "react";
+import { ShoppingBag, ShieldCheck, Truck, Sparkles, ArrowRight, Zap } from "lucide-react";
+import Link from "next/link";
 
-interface CoreValue {
-  title: string;
-  description: string;
-  icon: string;
-}
-
-const AboutPage: React.FC = () => {
-  const values: CoreValue[] = [
-    {
-      title: "Quality Products",
-      description: "Carefully selected items ensuring long-lasting value and trust.",
-      icon: "🛍️",
-    },
-    {
-      title: "Fast Delivery",
-      description: "Lightning-fast delivery system that respects your time.",
-      icon: "🚚",
-    },
-    {
-      title: "Secure Payment",
-      description: "Protected transactions with modern encryption technology.",
-      icon: "🔒",
-    },
-  ];
-
+const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 
-    text-slate-800 dark:text-slate-200 transition-colors duration-300">
+    <section className="relative bg-base-100 py-24 px-6 overflow-hidden">
+      {/* Structural Decorative Elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-screen bg-base-200/50 -skew-x-12 translate-x-32 -z-10" />
+      <div className="absolute top-1/4 left-10 w-4 h-4 bg-primary rounded-full animate-ping opacity-20" />
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
-
-        {/* Hero Section */}
-        <section className="text-center mb-24">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6">
-            About{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
-              Easy-Buy
-            </span>
-          </h1>
-
-          <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-            Making online shopping simple, affordable, and accessible for everyone.
-            Founded in 2024, Easy-Buy redefines modern e-commerce experiences.
+      <div className="md:w-11/12 mx-auto">
+        
+        {/* Section Header: Left Aligned for a Modern Corporate Look */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-sm mb-4">
+              
+            </div>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none mb-6">
+              The platform built for <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">modern trade.</span>
+            </h1>
+          </div>
+          <p className="text-xl text-base-content/60 max-w-md pb-2 leading-relaxed border-l-2 border-base-300 pl-6">
+            We bridge the gap between complex logistics and effortless user experience. Trusted by thousands of sellers.
           </p>
-        </section>
+        </div>
 
-        {/* Mission Section */}
-        <section className="grid md:grid-cols-2 gap-14 items-center mb-28">
-          <div className="p-10 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur 
-          shadow-lg hover:shadow-xl transition-all border border-slate-200/50 dark:border-slate-800">
-            <h2 className="text-3xl font-semibold mb-4 text-blue-600 dark:text-cyan-400">
-              Our Mission
-            </h2>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              At <strong>Easy-Buy</strong>, we remove complexity from online shopping.
-              Our curated platform combines quality products, transparent pricing, and
-              exceptional user experience — all in one place.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <h2 className="text-3xl font-semibold">Why Choose Us?</h2>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              We are more than a marketplace. Easy-Buy is a customer-first ecosystem
-              where reliability, speed, and trust come standard.
-            </p>
-
-            <ul className="space-y-2">
-              {[
-                "High-quality curated products",
-                "Fast & reliable delivery",
-                "Secure and smooth checkout",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-blue-500"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Core Values */}
-        <section className="mb-28">
-          <h2 className="text-4xl font-bold text-center mb-14">
-            Our Core Values
-          </h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="group p-8 rounded-3xl bg-white dark:bg-slate-900
-                border border-slate-100 dark:border-slate-800
-                shadow-md hover:shadow-xl hover:-translate-y-1
-                transition-all duration-300"
-              >
-                <div className="text-5xl mb-5 group-hover:scale-110 transition">
-                  {value.icon}
-                </div>
-                <h3 className="text-2xl font-semibold mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <footer className="relative overflow-hidden rounded-3xl p-16 text-center bg-gradient-to-r 
-        from-blue-600 to-cyan-500 text-white shadow-xl">
-
-          <div className="absolute inset-0 bg-black/10"></div>
-
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Have Questions?
-            </h2>
-            <p className="mb-8 text-lg opacity-90">
-              Our support team is available 24/7 for you.
-            </p>
-
-            <button
-              className="bg-white text-blue-600 font-semibold px-10 py-4 rounded-full
-              hover:scale-105 hover:shadow-2xl transition"
+        {/* Feature Grid: Elevated Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
+          {[
+            {
+              icon: <ShoppingBag />,
+              title: "Unified Commerce",
+              desc: "A singular interface for all your shopping needs, optimized for any device.",
+            },
+            {
+              icon: <Truck />,
+              title: "Global Logistics",
+              desc: "Smart tracking and fulfillment systems designed for speed and reliability.",
+            },
+            {
+              icon: <ShieldCheck />,
+              title: "Enterprise Security",
+              desc: "End-to-end encryption and multi-factor authentication for every transaction.",
+            },
+            {
+              icon: <Sparkles />,
+              title: "Tailored Experience",
+              desc: "AI-driven product recommendations that understand your unique style.",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="group relative p-8 rounded-3xl bg-base-100 border border-base-300 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
             >
-              Contact Us
-            </button>
-          </div>
-        </footer>
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                {React.cloneElement(item.icon, { className: "w-6 h-6" })}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+              <p className="text-base-content/60 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
 
+        {/* Brand Mission & Data Visualization Area */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          
+          {/* Mission Text */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Our core philosophy.</h2>
+            <div className="space-y-6 text-lg text-base-content/70">
+              <p>
+                At <span className="font-semibold text-base-content uppercase tracking-tighter">Easy Buy</span>, we believe technology should disappear. The most powerful tools are the ones you don`&apos;`t have to think about.
+              </p>
+              <p>
+                Our architecture is built on a API-first mentality, ensuring that whether you are a buyer or a seller, the data is accurate, the speed is instant, and the security is absolute.
+              </p>
+            </div>
+            <div className="mt-10 flex gap-4">
+                <div className="flex flex-col">
+                    <span className="text-2xl font-bold italic">Reliability is our greatest feature.</span>
+                    <span className="text-sm uppercase tracking-widest opacity-50 mt-2">— Engineering Team</span>
+                </div>
+            </div>
+          </div>
+
+          {/* Stats Card: High Professionalism */}
+          <div className="lg:col-span-5 relative">
+            <div className="absolute inset-0 bg-primary/5 rounded-[2.5rem] blur-2xl" />
+            <div className="relative h-full bg-base-200 border border-base-300 rounded-[2.5rem] p-10 overflow-hidden">
+              <div className="grid grid-cols-2 gap-8 relative z-10">
+                {[
+                    { label: "Inventory", val: "10k+", color: "text-primary" },
+                    { label: "Merchants", val: "500+", color: "text-secondary" },
+                    { label: "Uptime", val: "99.9%", color: "text-primary" },
+                    { label: "SLA", val: "Instant", color: "text-secondary" }
+                ].map((stat, idx) => (
+                    <div key={idx} className="p-4 bg-base-100 rounded-2xl shadow-sm">
+                        <p className={`text-3xl font-black ${stat.color}`}>{stat.val}</p>
+                        <p className="text-xs uppercase font-bold tracking-widest opacity-50 mt-1">{stat.label}</p>
+                    </div>
+                ))}
+              </div>
+              
+              {/* Abstract Professional Graphic */}
+              <div className="mt-12 flex items-center justify-between p-6 bg-primary text-primary-content rounded-2xl shadow-lg shadow-primary/20">
+                <div>
+                    <p className="text-sm font-bold opacity-80 uppercase tracking-widest">System Status</p>
+                    <p className="text-xl font-bold">All Systems Operational</p>
+                </div>
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Final CTA: Professional Conversion */}
+        <div className="mt-32 p-1 bg-gradient-to-r from-primary/20 via-base-300 to-secondary/20 rounded-[3rem]">
+            <div className="bg-base-100 rounded-[2.8rem] py-16 px-8 text-center border border-white/10">
+                <h2 className="text-4xl font-bold mb-6">Let`&apos;`s build the future of your business.</h2>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Link href="/products" className="btn btn-primary btn-lg rounded-full px-10 group">
+                        Start Shopping
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <button className="btn btn-ghost btn-lg rounded-full px-10 border border-base-300">
+                        Become a Seller
+                    </button>
+                </div>
+            </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default AboutPage;
+export default About;

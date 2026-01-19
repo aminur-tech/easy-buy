@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import { HiPlusCircle, HiClipboardList, HiLockClosed } from "react-icons/hi";
 
@@ -53,9 +54,9 @@ const ForSellers = () => {
 
         {/* CTA Button */}
         <div className="mt-12">
-          <button className="btn btn-primary btn-lg rounded-xl shadow-lg hover:shadow-primary/30 transition-all">
-            Login to Add Items
-          </button>
+          <Link href={`/add-products`} className="btn btn-primary btn-lg rounded-xl shadow-lg hover:shadow-primary/30 transition-all">
+             Add Items
+          </Link>
         </div>
       </div>
     </section>

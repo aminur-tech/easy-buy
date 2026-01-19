@@ -74,7 +74,7 @@ const ProductsDetails: React.FC = () => {
         {/* Product Info */}
         <div className="space-y-6">
           <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-gray-700 leading-relaxed">{product.description}</p>
+          <p className="text-base-content/70 text-lg leading-relaxed">{product.description}</p>
 
           <div className="flex flex-wrap gap-2">
             <span className="badge badge-outline">In Stock</span>
@@ -100,9 +100,9 @@ const ProductsDetails: React.FC = () => {
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4"
+              className="bg-base-100 border border-base-300 rounded-xl shadow-sm hover:shadow-md transition-shadow p-10 hover:scale-105 "
             >
-              <div className="h-40 w-full mb-4 bg-gray-200 rounded-lg" />
+              <div className="h-40 w-full mb-4 bg-base-200 rounded-lg" />
               <h3 className="font-semibold text-lg mb-2">Product {i}</h3>
               <span className="text-blue-600 font-bold">$99.99</span>
             </div>
