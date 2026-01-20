@@ -20,18 +20,19 @@ import { useState } from "react";
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // demo credentials
+  const DEMO_EMAIL = "demo@gmail.com";
+  const DEMO_PASSWORD = "12345678";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    // Sign in with credentials
     const result = await signIn("credentials", {
-      redirect: false, // we will handle redirect manually
+      redirect: false,
       email,
       password,
     });
@@ -41,9 +42,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
     if (result?.error) {
       alert("Invalid email or password");
     } else {
-      // Successful login → redirect
       window.location.href = "/";
     }
+  };
+
+  const handleDemoFill = () => {
+    setEmail(DEMO_EMAIL);
+    setPassword(DEMO_PASSWORD);
   };
 
   return (
@@ -61,7 +66,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" name="email" type="email" placeholder="m@example.com" required />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </Field>
 
               <Field>
@@ -69,29 +82,46 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                   <a
                     href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                    className="ml-auto text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" name="password" type="password" required />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </Field>
 
-              <Field>
+              <Field className="space-y-2">
                 <Button type="submit" disabled={loading} className="w-full">
                   {loading ? "Logging in..." : "Login"}
+                </Button>
+
+                {/* 👉 Demo Credentials Button */}
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="w-full"
+                  onClick={handleDemoFill}
+                >
+                  Use Demo Credentials
                 </Button>
 
                 <Button
                   variant="outline"
                   type="button"
-                  className="w-full mt-2"
+                  className="w-full"
                   onClick={() => signIn("google", { callbackUrl: "/" })}
                 >
                   Login with Google
                 </Button>
 
-                <FieldDescription className="text-center mt-2">
+                <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="/signup">Sign up</a>
                 </FieldDescription>
               </Field>
